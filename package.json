@@ -1,0 +1,20 @@
+{
+  "name": "nodejs_clash-royale-api",
+  "version": "1.0.0",
+  "description": "A server that pulls data from Clash Royale API",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index",
+    "dev": "nodemon index"
+  },
+  "author": "zahidyew",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
