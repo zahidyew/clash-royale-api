@@ -7,6 +7,7 @@ dotenv.config({ path: './config.env' })
 
 const app = express()
 
+// check fetch request response status
 function checkError(response) {
    if (response.status >= 200 && response.status <= 299) {
       return response.json();
@@ -71,12 +72,13 @@ app.get('/clans', (req, res) => {
    goFetch(url, req, res, "default")
 })
 
-// get the clan with the given id. Do not include # 
+// get clan with the given id. Do not include # 
 app.get('/clans/:id', (req, res) => {
    let url = `https://proxy.royaleapi.dev/v1/clans/%23${req.params.id}`
    goFetch(url, req, res, "default")
 })
 
+// get clan's log of river race
 app.get('/clans/:id/riverracelog', (req, res) => {
    let query = ""
    // optional queries
@@ -86,16 +88,19 @@ app.get('/clans/:id/riverracelog', (req, res) => {
    goFetch(url, req, res, "default")
 })
 
+// get clan's current members
 app.get('/clans/:id/members', (req, res) => {
    let url = `https://proxy.royaleapi.dev/v1/clans/%23${req.params.id}/members`
    goFetch(url, req, res, "default")
 })
 
+// get clan's current river race
 app.get('/clans/:id/currentriverrace', (req, res) => {
    let url = `https://proxy.royaleapi.dev/v1/clans/%23${req.params.id}/currentriverrace`
    goFetch(url, req, res, "default")
 })
 
+// get all tournaments with the given name
 app.get('/tournaments', (req, res) => {
    let query = ""
    // optional queries
@@ -105,16 +110,19 @@ app.get('/tournaments', (req, res) => {
    goFetch(url, req, res, "default")
 })
 
+// get the tournament with the given id
 app.get('/tournaments/:id', (req, res) => {
    let url = `https://proxy.royaleapi.dev/v1/tournaments/%23${req.params.id}`
    goFetch(url, req, res, "default")
 })
 
+// get all global tournaments 
 app.get('/globaltournaments', (req,res) => {
    let url = `https://proxy.royaleapi.dev/v1/globaltournaments`
    goFetch(url, req, res, "default")
 })
 
+// get all locations
 app.get('/locations', (req, res) => {
    let query = ''
    if(req.query.limit != undefined && req.query.limit != '') { query = query + `&limit=${req.query.limit}` }
@@ -123,11 +131,13 @@ app.get('/locations', (req, res) => {
    goFetch(url, req, res, "default")
 })
 
+// get a specific location
 app.get('/locations/:id', (req, res) => {
    let url = `https://proxy.royaleapi.dev/v1/locations/${req.params.id}`
    goFetch(url, req, res, "default")
 })
 
+// get clan war rankings for a specific location
 app.get('/locations/:id/rankings/clanwars', (req, res) => {
    let query = ''
    if (req.query.limit != undefined && req.query.limit != '') { query = query + `&limit=${req.query.limit}` }
@@ -136,6 +146,7 @@ app.get('/locations/:id/rankings/clanwars', (req, res) => {
    goFetch(url, req, res, "default")
 })
 
+// get players rankings for a specific location
 app.get('/locations/:id/rankings/players', (req, res) => {
    let query = ''
    if (req.query.limit != undefined && req.query.limit != '') { query = query + `&limit=${req.query.limit}` }
@@ -144,6 +155,7 @@ app.get('/locations/:id/rankings/players', (req, res) => {
    goFetch(url, req, res, "default")
 })
 
+// get clan rankings for a specific location
 app.get('/locations/:id/rankings/clans', (req, res) => {
    let query = ''
    if (req.query.limit != undefined && req.query.limit != '') { query = query + `&limit=${req.query.limit}` }
@@ -152,6 +164,7 @@ app.get('/locations/:id/rankings/clans', (req, res) => {
    goFetch(url, req, res, "default")
 })
 
+// get global tournament rankings
 app.get('/locations/global/rankings/tournaments/:id', (req, res) => {
    let query = ''
    if (req.query.limit != undefined && req.query.limit != '') { query = query + `&limit=${req.query.limit}` }

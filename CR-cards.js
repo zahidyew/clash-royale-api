@@ -397,7 +397,8 @@ const cards = {
    },
 }
 
-function assignRarity(item) {
+// add new properties into each object
+function assignNewProps(item) {
    if (cards.hasOwnProperty(item.name)) {
       //console.log(item.name)
       Object.assign(item, { rarity: cards[item.name].rarity })
@@ -407,6 +408,7 @@ function assignRarity(item) {
    }
 }
 
+// filter the returned response according to the user's query. TBC
 function queryFilter(items, query) {
    let myArray = []
 
@@ -418,9 +420,10 @@ function queryFilter(items, query) {
    return myArray
 }
 
+// func called in index to add more props into cards
 function setRarity(data, res, req) {
    // add new key/value pair to an object
-   data.map(assignRarity)
+   data.map(assignNewProps)
 
    // check if the request has query attached to it
    if (Object.keys(req.query).length === 0) { res.json(data) }
