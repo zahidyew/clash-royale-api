@@ -1,9 +1,9 @@
-const cards = {
+const cardsData = {
    "Knight": {
       "rarity": "Common",
       "elixir": 3,
    },
-   "Archers": { 
+   "Archers": {
       "rarity": "Common",
       "elixir": 3,
    },
@@ -397,40 +397,4 @@ const cards = {
    },
 }
 
-// add new properties into each object
-function assignNewProps(item) {
-   if (cards.hasOwnProperty(item.name)) {
-      //console.log(item.name)
-      Object.assign(item, { rarity: cards[item.name].rarity })
-      Object.assign(item, { elixirCost: cards[item.name].elixir })
-   } else {
-      return item;
-   }
-}
-
-// filter the returned response according to the user's query. TBC
-function queryFilter(items, query) {
-   let myArray = []
-
-   for(let i = 0; i < items.length; i++) {
-      if (items[i].rarity.toLowerCase() == query.rarity || items[i].rarity == query.rarity) {
-         myArray.push(items[i])
-      }
-   }
-   return myArray
-}
-
-// func called in index to add more props into cards
-function setRarity(data, res, req) {
-   // add new key/value pair to an object
-   data.map(assignNewProps)
-
-   // check if the request has query attached to it
-   if (Object.keys(req.query).length === 0) { res.json(data) }
-   else { res.json(queryFilter(data, req.query)) }
-   
-   //console.log(req.query)
-   //console.log(json.items[0].name)
-}
-
-exports.setRarity = setRarity
+module.exports = cardsData
